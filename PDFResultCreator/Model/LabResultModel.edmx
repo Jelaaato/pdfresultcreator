@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LabResultModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IntegrationDB.dbo.patient_lab_results' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="patient_lab_results">
+          <Key>
+            
+            <PropertyRef Name="lab_work_order_id" />
+            
+          </Key>
+          <Property Name="hospital_number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="lab_work_order_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="order_group" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="test" Type="varchar" MaxLength="200" />
+          <Property Name="result" Type="varchar" MaxLength="50" />
+          <Property Name="UOM" Type="varchar" MaxLength="20" />
+          <Property Name="reference_range" Type="varchar" MaxLength="50" />
+          <Property Name="seq_num" Type="int" />
+        </EntityType>
+        <EntityContainer Name="LabResultModelStoreContainer">
+          <EntitySet Name="patient_lab_results" EntityType="Self.patient_lab_results" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [patient_lab_results].[hospital_number] AS [hospital_number], 
+    [patient_lab_results].[lab_work_order_id] AS [lab_work_order_id], 
+    [patient_lab_results].[order_group] AS [order_group], 
+    [patient_lab_results].[test] AS [test], 
+    [patient_lab_results].[result] AS [result], 
+    [patient_lab_results].[UOM] AS [UOM], 
+    [patient_lab_results].[reference_range] AS [reference_range], 
+    [patient_lab_results].[seq_num] AS [seq_num]
+    FROM [dbo].[patient_lab_results] AS [patient_lab_results]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LabResultModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="patient_lab_results">
+          <Key>
+            <PropertyRef Name="lab_work_order_id" />
+          </Key>
+          <Property Name="hospital_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="test" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="result" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="reference_range" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="order_group" Type="String" MaxLength="300" Nullable="false" Unicode="false" FixedLength="false" />
+          <Property Name="lab_work_order_id" Type="Guid" Nullable="false" />
+          <Property Name="seq_num" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="LabResultEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="patient_lab_results" EntityType="Self.patient_lab_results" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LabResultModelStoreContainer" CdmEntityContainer="LabResultEntities">
+          <EntitySetMapping Name="patient_lab_results">
+            <EntityTypeMapping TypeName="LabResultModel.patient_lab_results">
+              <MappingFragment StoreEntitySet="patient_lab_results">
+                <ScalarProperty Name="seq_num" ColumnName="seq_num" />
+                <ScalarProperty Name="lab_work_order_id" ColumnName="lab_work_order_id" />
+                <ScalarProperty Name="hospital_number" ColumnName="hospital_number" />
+                <ScalarProperty Name="test" ColumnName="test" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="reference_range" ColumnName="reference_range" />
+                <ScalarProperty Name="order_group" ColumnName="order_group" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

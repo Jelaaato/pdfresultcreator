@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6048FF8F-310E-4B34-AE1F-5914FCEEC8DE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PDFResultCreator</RootNamespace>
+    <AssemblyName>PDFResultCreator</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TableDependency">
+      <HintPath>..\packages\SqlTableDependency.4.8.2.0\lib\TableDependency.dll</HintPath>
+    </Reference>
+    <Reference Include="TableDependency.SqlClient">
+      <HintPath>..\packages\SqlTableDependency.4.8.2.0\lib\TableDependency.SqlClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLogic\CreatePDF.cs" />
+    <Compile Include="BusinessLogic\DatabaseListener.cs" />
+    <Compile Include="BusinessLogic\PdfFooter.cs" />
+    <Compile Include="Model\LabHeaderModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabHeaderModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LabHeaderModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabHeaderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LabHeaderModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabHeaderModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\labResultDTO.cs" />
+    <Compile Include="Model\LabResultModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabResultModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LabResultModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabResultModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LabResultModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LabResultModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\patient_lab_header.cs">
+      <DependentUpon>LabHeaderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\patient_lab_results.cs">
+      <DependentUpon>LabResultModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model\LabResultModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LabResultModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Model\LabHeaderModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LabHeaderModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\LabHeaderModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LabHeaderModel.edmx</DependentUpon>
+      <LastGenOutput>LabHeaderModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\LabHeaderModel.edmx.diagram">
+      <DependentUpon>LabHeaderModel.edmx</DependentUpon>
+    </None>
+    <None Include="Model\LabHeaderModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LabHeaderModel.edmx</DependentUpon>
+      <LastGenOutput>LabHeaderModel.cs</LastGenOutput>
+    </None>
+    <None Include="Model\LabResultModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LabResultModel.edmx</DependentUpon>
+      <LastGenOutput>LabResultModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\LabResultModel.edmx.diagram">
+      <DependentUpon>LabResultModel.edmx</DependentUpon>
+    </None>
+    <None Include="Model\LabResultModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LabResultModel.edmx</DependentUpon>
+      <LastGenOutput>LabResultModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\ahmc_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PDFResults\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
